@@ -2,12 +2,16 @@ package fr.npe.xspeedit;
 
 import java.util.List;
 
-public class PackageValidator {
+public final class PackageValidator {
 
     private final int maximumSize;
 
     public PackageValidator(int maximumSize) {
         this.maximumSize = maximumSize;
+    }
+
+    public int getMaximumSize() {
+        return maximumSize;
     }
 
     /**

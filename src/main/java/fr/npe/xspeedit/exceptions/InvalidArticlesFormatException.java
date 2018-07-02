@@ -2,9 +2,9 @@ package fr.npe.xspeedit.exceptions;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
-public class InvalidArticlesFormat extends Exception {
+public class InvalidArticlesFormatException extends Exception {
 
-    public InvalidArticlesFormat(String message) {
+    public InvalidArticlesFormatException(String message) {
         super(message);
     }
 }
