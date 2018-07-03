@@ -2,7 +2,7 @@ package fr.npe.xspeedit;
 
 import fr.npe.xspeedit.exceptions.InvalidArticlesFormatException;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ArticlesExtractorTest {
 
@@ -18,33 +18,33 @@ public class ArticlesExtractorTest {
         Assertions.assertThat(articlesExtractor.extract("111222888999")).containsExactly(1, 1, 1, 2, 2, 2, 8, 8, 8, 9, 9, 9);
     }
 
-    @Test(expected = InvalidArticlesFormatException.class)
-    public void checkInvalidString0() throws InvalidArticlesFormatException {
+    @Test
+    public void checkInvalidString0() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
-        articlesExtractor.checkValidDescription("0");
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("0")).isInstanceOf(InvalidArticlesFormatException.class);
     }
 
-    @Test(expected = InvalidArticlesFormatException.class)
-    public void checkInvalidStringA() throws InvalidArticlesFormatException {
+    @Test
+    public void checkInvalidStringA() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
-        articlesExtractor.checkValidDescription("a");
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("a")).isInstanceOf(InvalidArticlesFormatException.class);
     }
 
-    @Test(expected = InvalidArticlesFormatException.class)
-    public void checkInvalidString1A() throws InvalidArticlesFormatException {
+    @Test
+    public void checkInvalidString1A() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
-        articlesExtractor.checkValidDescription("1a");
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("1a")).isInstanceOf(InvalidArticlesFormatException.class);
     }
 
-    @Test(expected = InvalidArticlesFormatException.class)
-    public void checkInvalidEmptyString() throws InvalidArticlesFormatException {
+    @Test
+    public void checkInvalidEmptyString() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
-        articlesExtractor.checkValidDescription("");
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("")).isInstanceOf(InvalidArticlesFormatException.class);
     }
 
-    @Test(expected = InvalidArticlesFormatException.class)
-    public void checkInvalidNullString() throws InvalidArticlesFormatException {
+    @Test
+    public void checkInvalidNullString() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
-        articlesExtractor.checkValidDescription(null);
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription(null)).isInstanceOf(InvalidArticlesFormatException.class);
     }
 }

@@ -2,7 +2,7 @@ package fr.npe.xspeedit;
 
 import fr.npe.xspeedit.domain.robot.SmartRobot;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 

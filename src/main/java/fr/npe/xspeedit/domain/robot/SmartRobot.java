@@ -38,6 +38,7 @@ public class SmartRobot implements IRobot {
 
     /**
      * Returns a new package as much filled as possible
+     *
      * @param sortedArticles the remaining articles which have not been used yet
      * @return the new pack
      */
