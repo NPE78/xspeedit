@@ -25,4 +25,11 @@ public class XspeeditTest {
         Pack pack1 = Pack.create(10, 1);
         Assertions.assertThat(xspeeditMain.concatPacks(Arrays.asList(pack1, pack1))).isEqualTo("1/1");
     }
+
+    @Test
+    public void checkArgsUsage() {
+        XspeeditMain xspeeditMain = new XspeeditMain();
+
+        Assertions.assertThat(xspeeditMain.getArticlesFromInput(new String[]{"1", "2", "3"}).orElse("")).isEqualTo("123");
+    }
 }

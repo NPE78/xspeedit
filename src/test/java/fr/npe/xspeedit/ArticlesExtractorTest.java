@@ -25,6 +25,12 @@ public class ArticlesExtractorTest {
     }
 
     @Test
+    public void checkInvalidString10() {
+        ArticlesExtractor articlesExtractor = new ArticlesExtractor();
+        Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("10")).isInstanceOf(InvalidArticlesFormatException.class);
+    }
+
+    @Test
     public void checkInvalidStringA() {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
         Assertions.assertThatThrownBy(() -> articlesExtractor.checkValidDescription("a")).isInstanceOf(InvalidArticlesFormatException.class);

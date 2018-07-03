@@ -33,3 +33,20 @@ Articles      : 163841689525773
 Robot actuel  : 163/8/41/6/8/9/52/5/7/73 => 10 cartons utilisés  
 Robot optimisé: 163/82/46/19/8/55/73/7   => 8  cartons utilisés
 ```
+
+Compiler
+--------
+
+`mvn clean package`
+
+Exécuter
+--------
+
+Depuis le dossier `target`,  
+
+```
+$ java -jar xspeedit-1.0-SNAPSHOT.jar 5 3 5 7 8 9 1 2
+Articles       : 53578912
+Robot actuel   : 53/5/7/8/91/2 => 6 carton(s) utilisé(s)
+Robot optimisé : 91/82/73/55 => 4 carton(s) utilisé(s)
+```

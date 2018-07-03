@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface IRobot {
 
+    String getDescription();
+
     List<Pack> pack(List<Integer> articles);
 
 }

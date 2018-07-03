@@ -2,35 +2,63 @@ package fr.npe.xspeedit;
 
 import fr.npe.xspeedit.domain.model.Pack;
 import fr.npe.xspeedit.domain.robot.DumbRobot;
+import fr.npe.xspeedit.domain.robot.IRobot;
 import fr.npe.xspeedit.domain.robot.SmartRobot;
 import fr.npe.xspeedit.exceptions.InvalidArticlesFormatException;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class XspeeditMain {
 
+    private static final String DEFAULT_ARTICLES = "163841689525773";
+
+    private final List<IRobot> robots;
+
+    /**
+     * Constructor which takes a list of supported robots to try to pack any list of articles
+     *
+     * @param robots one or many robots
+     */
+    public XspeeditMain(IRobot... robots) {
+        this.robots = Arrays.asList(robots);
+    }
+
     public static void main(String[] args) {
-        XspeeditMain xspeeditMain = new XspeeditMain();
+
+        XspeeditMain xspeeditMain = new XspeeditMain(
+                new DumbRobot(10),
+                new SmartRobot(10)
+        );
         try {
-            xspeeditMain.tryToPack("163841689525773");
+            xspeeditMain.tryToPack(args);
         } catch (InvalidArticlesFormatException invalidArticlesFormatException) {
             System.err.println(invalidArticlesFormatException.getMessage());
         }
     }
 
-    public void tryToPack(String articles) throws InvalidArticlesFormatException {
+    public void tryToPack(String[] input) throws InvalidArticlesFormatException {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
 
-        System.out.printf("Articles       : %s\n", articles);
-        List<Integer> extractedArticles = articlesExtractor.extract(articles);
+        String articles = getArticlesFromInput(input).orElse(DEFAULT_ARTICLES);
 
-        int maximumSize = 10;
-        DumbRobot dumbRobot = new DumbRobot(maximumSize);
-        System.out.printf("Robot actuel   : %s\n", develop(dumbRobot.pack(extractedArticles)));
+        pack(articlesExtractor.extract(articles));
+    }
 
-        SmartRobot smartRobot = new SmartRobot(maximumSize);
-        System.out.printf("Robot optimisé : %s\n", develop(smartRobot.pack(extractedArticles)));
+    public Optional<String> getArticlesFromInput(String[] args) {
+        return Optional.ofNullable(args)
+                .filter(a -> a.length > 0)
+                .map(a -> String.join("", a));
+    }
+
+    public void pack(List<Integer> articles) {
+        System.out.printf("Articles       : %s\n", articles.stream().map(Object::toString).collect(Collectors.joining()));
+
+        for (IRobot robot: robots) {
+            System.out.printf("Robot %-8s : %s\n", robot.getDescription(), develop(robot.pack(articles)));
+        }
     }
 
     private String develop(List<Pack> packs) {

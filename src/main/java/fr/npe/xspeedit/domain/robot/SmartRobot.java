@@ -25,6 +25,11 @@ public class SmartRobot implements IRobot {
     }
 
     @Override
+    public String getDescription() {
+        return "optimisé";
+    }
+
+    @Override
     public List<Pack> pack(List<Integer> articles) {
         List<Pack> packed = new ArrayList<>();
 

@@ -1,6 +1,5 @@
-package fr.npe.xspeedit;
+package fr.npe.xspeedit.domain.robot;
 
-import fr.npe.xspeedit.domain.robot.SmartRobot;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

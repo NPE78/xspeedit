@@ -14,6 +14,11 @@ public class DumbRobot implements IRobot {
     }
 
     @Override
+    public final String getDescription() {
+        return "actuel";
+    }
+
+    @Override
     public List<Pack> pack(List<Integer> articles) {
         List<Pack> packed = new ArrayList<>();
         Pack pack = new Pack(maximumSize);
