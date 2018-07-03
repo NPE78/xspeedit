@@ -1,43 +1,35 @@
 package fr.npe.xspeedit;
 
+import fr.npe.xspeedit.domain.Pack;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DumbRobot implements IRobot {
 
-    private final PackageValidator packageValidator;
+    private final int maximumSize;
 
     public DumbRobot(int maximumSize) {
-        packageValidator = new PackageValidator(maximumSize);
-    }
-
-    public static void main(String[] args) {
-        DumbRobot robot = new DumbRobot(10);
-        robot.pack(Arrays.asList(9, 8));
+        this.maximumSize = maximumSize;
     }
 
     @Override
-    public List<Integer> pack(List<Integer> articles) {
-        List<Integer> packed = new ArrayList<>();
+    public List<Pack> pack(List<Integer> articles) {
+        List<Pack> packed = new ArrayList<>();
         int cursor = 0;
-        int sum = 0;
-        int pack = 0;
+        Pack pack = new Pack(maximumSize);
         final int size = articles.size();
         while (cursor < size) {
             int currentArticle = articles.get(cursor);
-            sum += currentArticle;
-            if (sum <= packageValidator.getMaximumSize()) {
-                pack *= 10;
-                pack += currentArticle;
+            if (pack.canAdd(currentArticle)) {
+                pack.add(currentArticle);
             } else {
                 packed.add(pack);
-                pack = currentArticle;
-                sum = currentArticle;
+                pack = Pack.create(maximumSize, currentArticle);
             }
             cursor++;
         }
-        if (pack > 0) {
+        if (pack.getPackageSize() > 0) {
             packed.add(pack);
         }
         return packed;

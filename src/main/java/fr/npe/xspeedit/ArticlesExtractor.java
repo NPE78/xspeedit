@@ -21,13 +21,15 @@ public class ArticlesExtractor {
         return Arrays.stream(articles.split("")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    /**
+     * Checks if the articles input matches the pattern: composed only of numbers from 1 to 9
+     * @param articles articles input
+     * @throws InvalidArticlesFormatException exception thrown if the pattern does not match
+     */
     public void checkValidDescription(String articles) throws InvalidArticlesFormatException {
-        boolean matches = Optional.ofNullable(articles)
-                .map(this::articlesMatchesPattern)
-                .orElse(false);
-        if (!matches) {
-            throw new InvalidArticlesFormatException("The description of the articles is invalid. Please check your input");
-        }
+        Optional.ofNullable(articles)
+                .map(this::articlesMatchesPattern).filter(Boolean::booleanValue)
+                .orElseThrow(InvalidArticlesFormatException::new);
     }
 
     private boolean articlesMatchesPattern(String articles) {

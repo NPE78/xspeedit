@@ -1,5 +1,6 @@
 package fr.npe.xspeedit;
 
+import fr.npe.xspeedit.domain.Pack;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -11,13 +12,17 @@ public class XspeeditTest {
     public void display123() {
         XspeeditMain xspeeditMain = new XspeeditMain();
 
-        Assertions.assertThat(xspeeditMain.concatArticles(Arrays.asList(1, 2, 3))).isEqualTo("1/2/3");
+        Pack pack1 = Pack.create(10, 1);
+        Pack pack2 = Pack.create(10, 2);
+        Pack pack3 = Pack.create(10, 3);
+        Assertions.assertThat(xspeeditMain.concatPacks(Arrays.asList(pack1, pack2, pack3))).isEqualTo("1/2/3");
     }
 
     @Test
     public void display11() {
         XspeeditMain xspeeditMain = new XspeeditMain();
 
-        Assertions.assertThat(xspeeditMain.concatArticles(Arrays.asList(1, 1))).isEqualTo("1/1");
+        Pack pack1 = Pack.create(10, 1);
+        Assertions.assertThat(xspeeditMain.concatPacks(Arrays.asList(pack1, pack1))).isEqualTo("1/1");
     }
 }

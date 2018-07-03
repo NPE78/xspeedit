@@ -1,18 +1,20 @@
 package fr.npe.xspeedit;
 
+import fr.npe.xspeedit.domain.Pack;
+
 import java.util.Collections;
 import java.util.List;
 
 public class OptimizedRobot implements IRobot  {
 
-    private final PackageValidator packageValidator;
+    private final int maximumSize;
 
     public OptimizedRobot(int maximumSize) {
-        packageValidator = new PackageValidator(maximumSize);
+        this.maximumSize = maximumSize;
     }
 
     @Override
-    public List<Integer> pack(List<Integer> articles) {
+    public List<Pack> pack(List<Integer> articles) {
         return Collections.emptyList();
     }
 }

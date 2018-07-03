@@ -1,5 +1,6 @@
 package fr.npe.xspeedit;
 
+import fr.npe.xspeedit.domain.Pack;
 import fr.npe.xspeedit.exceptions.InvalidArticlesFormatException;
 
 import java.util.List;
@@ -30,11 +31,11 @@ public class XspeeditMain {
         System.out.printf("Robot optimisé: %s\n", develop(optimizedRobot.pack(extractedArticles)));
     }
 
-    private String develop(List<Integer> articles) {
-        return String.format("%s => %s carton(s) utilisé(s)", concatArticles(articles), articles.size());
+    private String develop(List<Pack> packs) {
+        return String.format("%s => %s carton(s) utilisé(s)", concatPacks(packs), packs.size());
     }
 
-    public String concatArticles(List<Integer> articles) {
-        return articles.stream().map(Object::toString).collect(Collectors.joining("/"));
+    public String concatPacks(List<Pack> packs) {
+        return packs.stream().map(Pack::toString).collect(Collectors.joining("/"));
     }
 }
