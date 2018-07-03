@@ -1,4 +1,4 @@
-package fr.npe.xspeedit.domain;
+package fr.npe.xspeedit.domain.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

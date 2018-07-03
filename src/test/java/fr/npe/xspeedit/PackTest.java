@@ -1,6 +1,6 @@
 package fr.npe.xspeedit;
 
-import fr.npe.xspeedit.domain.Pack;
+import fr.npe.xspeedit.domain.model.Pack;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package fr.npe.xspeedit;
 
-import fr.npe.xspeedit.domain.Pack;
+import fr.npe.xspeedit.domain.model.Pack;
+import fr.npe.xspeedit.domain.robot.DumbRobot;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

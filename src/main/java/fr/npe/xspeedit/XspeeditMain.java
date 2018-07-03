@@ -1,6 +1,8 @@
 package fr.npe.xspeedit;
 
-import fr.npe.xspeedit.domain.Pack;
+import fr.npe.xspeedit.domain.model.Pack;
+import fr.npe.xspeedit.domain.robot.DumbRobot;
+import fr.npe.xspeedit.domain.robot.SmartRobot;
 import fr.npe.xspeedit.exceptions.InvalidArticlesFormatException;
 
 import java.util.List;
@@ -20,15 +22,15 @@ public class XspeeditMain {
     public void tryToPack(String articles) throws InvalidArticlesFormatException {
         ArticlesExtractor articlesExtractor = new ArticlesExtractor();
 
-        System.out.printf("Articles      : %s\n", articles);
+        System.out.printf("Articles       : %s\n", articles);
         List<Integer> extractedArticles = articlesExtractor.extract(articles);
 
         int maximumSize = 10;
         DumbRobot dumbRobot = new DumbRobot(maximumSize);
-        System.out.printf("Robot actuel  : %s\n", develop(dumbRobot.pack(extractedArticles)));
+        System.out.printf("Robot actuel   : %s\n", develop(dumbRobot.pack(extractedArticles)));
 
-        OptimizedRobot optimizedRobot = new OptimizedRobot(maximumSize);
-        System.out.printf("Robot optimisé: %s\n", develop(optimizedRobot.pack(extractedArticles)));
+        SmartRobot smartRobot = new SmartRobot(maximumSize);
+        System.out.printf("Robot optimisé : %s\n", develop(smartRobot.pack(extractedArticles)));
     }
 
     private String develop(List<Pack> packs) {

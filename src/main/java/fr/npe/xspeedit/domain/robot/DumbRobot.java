@@ -1,6 +1,6 @@
-package fr.npe.xspeedit;
+package fr.npe.xspeedit.domain.robot;
 
-import fr.npe.xspeedit.domain.Pack;
+import fr.npe.xspeedit.domain.model.Pack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +16,14 @@ public class DumbRobot implements IRobot {
     @Override
     public List<Pack> pack(List<Integer> articles) {
         List<Pack> packed = new ArrayList<>();
-        int cursor = 0;
         Pack pack = new Pack(maximumSize);
-        final int size = articles.size();
-        while (cursor < size) {
-            int currentArticle = articles.get(cursor);
+        for (int currentArticle: articles) {
             if (pack.canAdd(currentArticle)) {
                 pack.add(currentArticle);
             } else {
                 packed.add(pack);
                 pack = Pack.create(maximumSize, currentArticle);
             }
-            cursor++;
         }
         if (pack.getPackageSize() > 0) {
             packed.add(pack);

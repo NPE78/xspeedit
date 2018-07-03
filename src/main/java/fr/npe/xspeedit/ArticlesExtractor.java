@@ -23,6 +23,7 @@ public class ArticlesExtractor {
 
     /**
      * Checks if the articles input matches the pattern: composed only of numbers from 1 to 9
+     *
      * @param articles articles input
      * @throws InvalidArticlesFormatException exception thrown if the pattern does not match
      */
